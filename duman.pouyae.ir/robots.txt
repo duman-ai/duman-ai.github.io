@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /reseller
+Disallow: /user
+Disallow: /site/api
+Disallow: /site/error
+Disallow: /site/payment
+Disallow: /site/password
+Disallow: /site/products/compare
+Disallow: /site/cart
+Disallow: /site/buy
+Disallow: /site/profile
+Disallow: /site/spotplayer
+Sitemap: https://duman.pouyae.ir/site/sitemap
