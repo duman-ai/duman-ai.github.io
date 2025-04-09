@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Duman AI Newsletter</title>
+  <link rel="icon" type="image/png" href="../uploads/logo/661cfb.png?m=thumb&h=50&q=high">
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header>
+    <img src="../uploads/logo/661cfb.png%3Fm=thumb&amp;h=50&amp;q=high" alt="خبرنامه هوش‌مصنوعی دومان" class="header-logo-image">
+    <h1>مقالات خبرنامه هوش‌مصنوعی دومان</h1>
+  </header>
+
+  <main>
+    <div class="post">
+      <h2><a href="humanoid.html">توسعه ربات‌های انسان‌نما</a></h2>
+      <p>ربات‌های انسان‌نما (Humanoid Robots)، ربات‌های دو پا (bipedal) با آناتومی و سایز مشابه انسان‌ هستند. با ترند شدن هوش‌مصنوعی در چند سال اخیر، توسعه چنین ربات‌هایی نیز بیشتر از گذشته پیگیری شده و شاهد معرفی نمونه‌های بسیاری از این ربات‌ها هستیم. در این مقاله وضعیت فعلی و روش‌های توسعه این دسته از ربات‌ها را بررسی خواهیم. قابل ذکر است که بسیاری از مفاهیم ارائه شده در این مقاله محدود به ربات‌های انسان‌نما نبوده و به صورت کلی در حوزه رباتیک مورد استفاده قرار می‌گیرند.</p>
+    </div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script>
+    fetch("footer.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("footer-placeholder").innerHTML = data;
+      });
+  </script>
+
+</body>
+</html>
