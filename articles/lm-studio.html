@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>چگونه مدل‌های زبانی را به صورت لوکال اجرا کنیم؟</title>
+    <link rel="icon" type="image/png" href="../uploads/logo/661cfb.png?m=thumb&h=50&q=high">
+    <link rel="stylesheet" href="styles.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet"/>
+</head>
+<body>
+<header>
+    <img src="../uploads/logo/661cfb.png%3Fm=thumb&amp;h=50&amp;q=high" alt="خبرنامه هوش‌مصنوعی دومان"
+         class="header-logo-image">
+    <h1>چگونه مدل‌های زبانی را به صورت لوکال اجرا کنیم؟</h1>
+</header>
+
+<main>
+    <div class="post">
+        <p>شما به راحتی می‌توانید مدل‌های زبانی را با استفاده از نرم‌افزار LM Studio دانلود کرده و در سیستم لوکال خود
+            اجرا کنید. این نرم‌افزار هم با رابط کاربری (GUI) و هم با استفاده از ترمینال (CLI) قابل استفاده است. حداقل
+            سیستم مورد نیاز برای نصب LM Studio را از <a href="https://lmstudio.ai/docs/app/system-requirements"
+                                                        target="_blank">اینجا</a> مشاهده کنید. همچنین برای دانلود و نصب
+            آن به این <a href="https://lmstudio.ai/download" target="_blank">صفحه</a> مراجعه کنید. قابل ذکر است که این
+            نرم‌افزار رایگان است.</p>
+
+        <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 20px;">
+            <img src="https://i.postimg.cc/x1SMQDvM/lm-studio.png" alt="لوگوی LM Studio"
+                 style="max-width: 60%; height: auto;">
+        </div>
+
+        <p>تمامی مدل‌های زبانی از پلتفرم HuggingFace قابل جستجو و دانلود است. HuggingFace یک پلتفرم و کامیونیتی برای
+            انتشار و دموی مدل‌های زبانی است. به نوعی می‌توان گفت HuggingFace گیت‌هاب مخصوص Machine Learning است. شما
+            می‌توانید در این پلتفرم حساب کاربری ساخته و از مدل‌های منتشر شده در آن استفاده کنید. برای استفاده از LM
+            Studio نیازی به ساخت اکانت در HuggingFace نیست ولی این نرم‌افزار از HuggingFace به عنوان هاب جستجو و دانلود
+            مدل‌های زبانی استفاده می‌کند.</p>
+
+        <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 20px;">
+            <img src="https://i.postimg.cc/Ssjzdy4F/hugging-face.png" alt="لوگوی HuggingFace"
+                 style="max-width: 50%; height: auto;">
+        </div>
+
+        <p>اما تمامی مدل‌های زبانی با استفاده از LM Studio قابل استفاده نیستند! تنها مدل‌هایی که فرمت GGUF یا MLX دارند
+            توسط LM Studio پشتیبانی می‌شوند. علاوه بر فرمت سایز مدل و محدودیت سیستم لوکال نیز مهم است. سایز بسیاری از
+            مدل‌های زبانی بسیار زیاد بوده و سیستم‌های شخصی نظیر لپ‌تاپ امکان لود کردن آن را ندارند. یکی از راه‌حل‌های
+            رایج برای حل مشکل سایز استفاده از مدل‌های کوانتیزه است که سایز کمتر و کیفیت نسبتاً مشابهی با مدل اصلی دارند.
+            در ادامه هر کدام از این مفاهیم معرفی شده است. هر مدلی که در HuggingFace منتشر شده دارای یک کارت است که در آن
+            اطلاعاتی نظیر سایز روی دیسک و فرمت آن نوشته شده است. برای دیدن لیست مدل‌هایی که با LM Studio قابل اجرا هستند
+            <a href="https://lmstudio.ai/models" target="_blank">اینجا</a> را مشاهده کنید.</p>
+
+        <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 20px;">
+            <img src="https://i.postimg.cc/bYW5fTmk/lm-studio-model-card.png" alt="کارت مدل در LM Studio"
+                 style="max-width: 75%; height: auto;">
+            <p style="font-size: 14px; color: #555; margin-top: 8px;">کارت مدل در LM Studio</p>
+        </div>
+
+        <h3>معرفی فرمت‌های GGUF و MLX</h3>
+
+        <p>فرمت GPT-Generated Unified Format یا به اختصار GGUF یک فرمت باینری است که با هدف ذخیره‌سازی و فراخوانی سریع
+            مدل‌های زبانی بهینه شده است. این فرمت برای اجرای (Inference) مدل‌های زبانی بسیار بهینه است. برای آشنایی
+            بیشتر <a href="https://huggingface.co/docs/hub/gguf" target="_blank">اینجا</a> را بخوانید.</p>
+        <p>فریم‌ورک MLX توسط اپل جهت توسعه و اجرای مدل‌های زبانی در پردازنده‌های Apple Silicon معرفی شده است. همچنین این
+            فریم‌ورک اجرای بهینه مدل‌های زبانی در پردازنده‌های Apple Silicon را نیز فراهم می‌کند. منتها قبل از اجرای مدل
+            باید آن را به فرمت سازگار با MLX تبدیل کرد. برای آشنایی بیشتر با این فریم‌ورک <a
+                    href="https://ml-explore.github.io/mlx/build/html/index.html" target="_blank">اینجا</a> را بخوانید.
+        </p>
+
+        <h3>کوانتیزه کردن</h3>
+        <p>منظور از کوانتیزه کردن (Quantization) کاهش سایز مدل است (همان فشرده‌سازی). کاهش سایز مدل منجر به کاهش فضای
+            دیسک و کاهش مموری برای اجرای مدل می‌شود. به این ترتیب محدودیت کمبود فضا برای نگهداری و لود کردن مدل را حل
+            می‌کند. اما در عین حال به دلیل حذف بخشی از دیتای مدل منجر به کاهش دقت آن می‌شود. در بسیاری از مدل‌های زبانی
+            اعداد به فرمت اعشار ۳۲ بیتی یا FP32 تعریف می‌شوند. هر عدد با فرمت FP32 چهار بایت فضا را اشغال می‌کند. به
+            عنوان نمونه یک مدل با یک میلیارد پارامتر حداقل به 4GB فضا برای ذخیره‌سازی نیاز دارد. در روش‌های کوانتیزه
+            کردن فرمت اعداد به فرمت‌های دیگری تبدیل می‌شود تا فضای مورد نیاز برای ذخیره‌سازی آن کاهش پیدا کند. به عنوان
+            مثال با تبدیل FP32 به INT8 فضای ذخیره‌سازی به 1GBو با تبدیل FP32 به INT16 این فضا به 2GB کاهش می‌یابد.
+            کوانتیزه کردن می‌تواند بعد از آموزش مدل Post-Training Quantization (PTQ) و یا در حین آموزش
+            Quantization-Aware Training (QAT) انجام شود. برای آشنایی بیشتر با <a
+                    href="https://huggingface.co/docs/peft/main/en/developer_guides/quantization"
+                    target="_blank">اینجا</a> مبحث اینجا را بخوانید.</p>
+
+        <h3>قابلیت‌های LM Studio</h3>
+        <p>همان‌طور که اشاره شد، با استفاده از LM Studio می‌توانید از بین مدل‌های منتشر شده در HuggingFace جستجو کرده و
+            مدل(ها) مناسب خود را انتخاب و دانلود کنید. پس از دانلود مدل و لود کردن در مموری امکان چت کردن با آن و
+            نگهداری تاریخچه این چت وجود دارد. همچنین می‌توانید پارامترهای مختلفی از مدل زبانی را تغییر دهید.</p>
+        <p>با استفاده از LM Studio می‌توانید مدل خود را به شکل یک سرور از طریق API دسترس قرار دهید (LM Studio as a Local
+            LLM API Server). این قابلیت برای توسعه‌دهندگان اپلیکیشن‌های مبتنی بر LLM بسیار کاربردی است. در حال حاضر به
+            سه شکل زیر این API در دسترس قرار می‌گیرد:</p>
+
+        <h4>۱. مشابه APIهای OpenAI:</h4>
+        <p>در این حالت باید از پکیج OpenAI در زبان برنامه‌نویسی موردنظرتان استفاده کرده و base url را برابر آدرسی که LM
+            Studio تعریف کرده قرار دهید. به عنوان مثال برای زبان پایتون داریم:</p>
+
+        <pre style="background-color: #f4f4f4; padding: 1rem; border-radius: 8px; overflow-x: auto; direction: ltr;">
+        <code style="color: #333;">
+        from openai import OpenAI
+
+        client = OpenAI(
+            base_url="http://localhost:1234/v1"
+        )
+
+        # ... the rest of your code ...
+        </code>
+        </pre>
+
+        <p>در این روش تنها چهار API زیر ساپورت می‌شود. برای جزئیات فنی بیشتر <a
+                href="https://lmstudio.ai/docs/app/api/endpoints/openai" target="_blank">اینجا</a> را بخوانید.</p>
+
+        <h4>لیست APIها:</h4>
+        <ul style="list-style-type: none; padding: 0; direction: ltr;">
+            <li style="background-color: #f4f4f4; padding: 0.5rem; border-radius: 8px; margin-bottom: 0.5rem;">GET
+                <code>/v1/models</code></li>
+            <li style="background-color: #f4f4f4; padding: 0.5rem; border-radius: 8px; margin-bottom: 0.5rem;">POST
+                <code>/v1/chat/completions</code></li>
+            <li style="background-color: #f4f4f4; padding: 0.5rem; border-radius: 8px; margin-bottom: 0.5rem;">POST
+                <code>/v1/embeddings</code></li>
+            <li style="background-color: #f4f4f4; padding: 0.5rem; border-radius: 8px;">POST
+                <code>/v1/completions</code></li>
+        </ul>
+
+        <h4>۲. استفاده از SDK زبان برنامه‌نویسی:</h4>
+        <p>در حال حاضر تنها برای زبان‌های TS و Python پکیج رسمی معرفی شده است. برای جزئیات فنی بیشتر <a
+                href="https://lmstudio.ai/docs/typescript" target="_blank">اینجا</a> و <a
+                href="https://github.com/lmstudio-ai" target="_blank">اینجا</a> را بخوانید.</p>
+
+        <h4>۳. استفاده از REST API: </h4>
+        <p>این APIها از نسخه 0.3.6 به بعد منتشر شده و در حال حاضر در ریلیز بتا قرار دارد. برای همین ممکن است در آینده
+            تغییر کند. در این حالت پنج API زیر معرفی شده است. برای جزئیات بیشتر <a
+                    href="https://lmstudio.ai/docs/app/api/endpoints/rest" target="_blank">اینجا</a> را بخوانید.</p>
+
+        <ul style="list-style-type: none; padding: 0; direction: ltr;">
+            <li style="background-color: #f4f4f4; padding: 0.5rem; border-radius: 8px; margin-bottom: 0.5rem;">GET
+                <code>/api/v0/models</code></li>
+            <li style="background-color: #f4f4f4; padding: 0.5rem; border-radius: 8px; margin-bottom: 0.5rem;">GET
+                <code>/api/v0/models/{model}</code></li>
+            <li style="background-color: #f4f4f4; padding: 0.5rem; border-radius: 8px; margin-bottom: 0.5rem;">POST
+                <code>/api/v0/chat/completions</code></li>
+            <li style="background-color: #f4f4f4; padding: 0.5rem; border-radius: 8px; margin-bottom: 0.5rem;">POST
+                <code>/api/v0/completions</code></li>
+            <li style="background-color: #f4f4f4; padding: 0.5rem; border-radius: 8px;">POST
+                <code>/api/v0/embeddings</code></li>
+        </ul>
+
+
+        <p>از نسخه 0.3.5 به بعد می‌توان مدل زبانی را به شکل یک سرویس بدون رابط گرافیکی اجرا کرد (Headless). قابل ذکر است
+            که LM Studio برای استفاده شخصی و لوکال توسعه داده و در حال حاضر محیط پروداکشن را پشتیبانی نمی‌کند. همچنین با
+            اضافه شدن قابلیت on-demand model loading (JIT) امکان لود کردن مدل در مموری هنگام نیاز فراهم شده است. به این
+            ترتیب تنها در صورتی که به مدل نیاز باشد در مموری لود شده و حافظه پیوسته اشغال نمی‌ماند. طبعاً لود کردن مدل
+            در مموری خود نیازمند صرف زمان است.</p>
+
+        <h3>اطلاعات بیشتر در:</h3>
+        <ul>
+            <li><a href="https://lmstudio.ai/" target="_blank">وب‌سایت رسمی</a></li>
+            <li><a href="https://github.com/lmstudio-ai" target="_blank">آدرس گیت‌هاب</a></li>
+            <li><a href="https://huggingface.co/lmstudio-ai" target="_blank">صفحه رسمی در HuggingFace</a></li>
+        </ul>
+
+    </div>
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script>
+    fetch("footer.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("footer-placeholder").innerHTML = data;
+        });
+</script>
+
+<script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+</body>
+</html>
